@@ -46,14 +46,13 @@ function decode(expr) {
         encodedLetters.push(expr.substr(i,10));
         i+=10;
     }
-    console.log(encodedLetters);
     let MORSE_TABLE01={};
     let tempStr;
 
     for(let key in MORSE_TABLE){
 
-        tempStr=key.replaceAll('.','10');
-        tempStr=tempStr.replaceAll('-','11');
+        tempStr=key.split(".").join("10");
+        tempStr=tempStr.split("-").join("11");
 
         if(tempStr.length<10){
             let arrLength=tempStr.length;
@@ -66,10 +65,9 @@ function decode(expr) {
         MORSE_TABLE01[tempStr]=MORSE_TABLE[key];
     }
     MORSE_TABLE01['**********']=' ';
-    console.log(MORSE_TABLE01);
+
     let decodeArr=[];
     decodeArr=encodedLetters.map(el=>MORSE_TABLE01[el]);
-    console.log(decodeArr);
     return decodeArr.join('');
 }
 
